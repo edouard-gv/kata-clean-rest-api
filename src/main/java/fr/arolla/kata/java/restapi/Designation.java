@@ -1,5 +1,8 @@
 package fr.arolla.kata.java.restapi;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Designation {
     public String getRaisonSociale() {
         return safeString(raisonSociale);
@@ -16,8 +19,9 @@ public class Designation {
     private final String raisonSociale;
     private final String enseigne;
 
-    public Designation(String raison_sociale, String enseigne) {
-        this.raisonSociale = clean(raison_sociale);
+    @JsonCreator
+    public Designation(@JsonProperty("raison_sociale") String raisonSociale, String enseigne) {
+        this.raisonSociale = clean(raisonSociale);
         this.enseigne = clean(enseigne);
     }
 

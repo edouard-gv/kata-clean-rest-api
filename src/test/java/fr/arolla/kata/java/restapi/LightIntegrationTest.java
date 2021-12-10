@@ -21,12 +21,12 @@ public class LightIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void appelerLAPIdUpdateDevraitRenvoyerLaDesignation() throws Exception {
+    public void appelerLAPIdUpdateDevraitRenvoyerLaDesignationEnPassantParLeConstructeurQuiNettoieLesAccents() throws Exception {
         mockMvc.perform(post(
                         "/etablissement/12345678901234/designation/")
-                        .content(cleanJson("{'denomination_usuelle':'Arolla SAS', 'enseigne':'Arolla'}"))
+                        .content(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Joli Pré'}"))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(cleanJson("{'denomination_usuelle':'Arolla SAS', 'enseigne':'Arolla'}")));
+                .andExpect(content().json(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Joli Pre'}")));
     }
 
     private static String cleanJson(String readableJSON) {

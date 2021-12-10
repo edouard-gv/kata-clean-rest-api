@@ -10,8 +10,8 @@ import java.util.Map;
 @RestController
 public class DesignationController {
     @RequestMapping(value = "/etablissement/{siret}/designation/", method = RequestMethod.POST)
-    public Map<String, String> updateDesignationForSiret(String siret, @RequestBody Map designation) {
-        return Map.of("raison_sociale", (String)designation.get("raison_sociale"), "enseigne", (String)designation.get("enseigne"));
+    public Map<String, String> updateDesignationForSiret(String siret, @RequestBody Designation designation) {
+        return Map.of("raison_sociale", designation.getRaison_sociale(), "enseigne", designation.getEnseigne());
     }
 
     @RequestMapping(value = "/echo/", method = RequestMethod.POST)

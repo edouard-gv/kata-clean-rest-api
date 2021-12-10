@@ -3,7 +3,8 @@ package fr.arolla.kata.java.restapi;
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -32,6 +33,19 @@ public class IntegrationTest {
                 response, false);
     }
 
+
+    @Test
+    public void appelerLAPIdUpdateDevraitRenvoyerLaDesignationEnPassantParLeConstructeurQuiNettoieLesAccents() throws JSONException {
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        String response = testRestTemplate.
+                postForObject("http://localhost:" + this.port + "/etablissement/12345678901234/designation/",
+                        Map.of("raison_sociale", "Nature SAS", "enseigne", "Le Joli Pré"),
+                        String.class);
+
+        JSONAssert.assertEquals(cleanJson("{'raison_sociale':'Nature SAS', 'enseigne':'Le Joli Pre'}"),
+                response, false);
+    }
+
     private static String cleanJson(String readableJSON) {
         return readableJSON.replace('\'', '"').replaceAll(", ", ",");
     }
@@ -44,7 +58,8 @@ public class IntegrationTest {
                         Map.of("input", "Arolla SAS", "enseigne", "Arolla"),
                         String.class);
 
-        assertEquals("{enseigne=Arolla, input=Arolla SAS}", response);
+
+        assertTrue("{enseigne=Arolla, input=Arolla SAS}".equals(response) || "{input=Arolla SAS, enseigne=Arolla}".equals(response));
     }
 
 }

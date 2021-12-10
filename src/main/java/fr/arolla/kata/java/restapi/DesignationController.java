@@ -1,18 +1,21 @@
 package fr.arolla.kata.java.restapi;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class DesignationController {
     @RequestMapping(value = "/etablissement/{siret}/designation/", method = RequestMethod.POST)
-    public String updateDesignationForSiret(String siret, String denomination_usuelle, String enseigne) {
-        return cleanJson("{'denomination_usuelle':'Arolla SAS', 'enseigne':'Arolla'}");
+    public Map<String, String> updateDesignationForSiret(String siret, @RequestBody Map designation) {
+        return Map.of("denomination_usuelle", (String)designation.get("denomination_usuelle"), "enseigne", (String)designation.get("enseigne"));
     }
 
-    private static String cleanJson(String readableJSON) {
-        return readableJSON.replace('\'', '"').replaceAll(", ", ",");
+    @RequestMapping(value = "/echo/", method = RequestMethod.POST)
+    public String echo(@RequestBody Map input) {
+        return input.toString();
     }
-
 }

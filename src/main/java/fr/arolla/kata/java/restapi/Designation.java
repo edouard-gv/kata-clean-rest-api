@@ -1,8 +1,8 @@
 package fr.arolla.kata.java.restapi;
 
 public class Designation {
-    public String getRaison_sociale() {
-        return safeString(raison_sociale);
+    public String getRaisonSociale() {
+        return safeString(raisonSociale);
     }
 
     public String getEnseigne() {
@@ -13,11 +13,11 @@ public class Designation {
         return attribute == null? "": attribute;
     }
 
-    private final String raison_sociale;
+    private final String raisonSociale;
     private final String enseigne;
 
     public Designation(String raison_sociale, String enseigne) {
-        this.raison_sociale = clean(raison_sociale);
+        this.raisonSociale = clean(raison_sociale);
         this.enseigne = clean(enseigne);
     }
 

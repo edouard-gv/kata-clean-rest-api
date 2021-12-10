@@ -7,8 +7,8 @@ public class DesignationTest {
 
     @Test
     public void cleanDevraitSupprimerLesAccentsDansLaRaisonSociale() {
-        assertEquals("PasDaccent", new Designation("PasDaccent", "NA").getRaison_sociale());
-        assertEquals("eaccenteaigu", new Designation("éaccentéaigu", "NA").getRaison_sociale());
+        assertEquals("PasDaccent", new Designation("PasDaccent", "NA").getRaisonSociale());
+        assertEquals("eaccenteaigu", new Designation("éaccentéaigu", "NA").getRaisonSociale());
     }
 
     @Test
@@ -20,6 +20,6 @@ public class DesignationTest {
     @Test
     public void onDevraitRecupererDesAttributsVidesEtNonNulsQuandOnPasseDesValeursNulles() {
         assertEquals("", new Designation("*",null).getEnseigne());
-        assertEquals("", new Designation(null,"*").getRaison_sociale());
+        assertEquals("", new Designation(null,"*").getRaisonSociale());
     }
 }

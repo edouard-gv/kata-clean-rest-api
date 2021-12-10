@@ -2,11 +2,15 @@ package fr.arolla.kata.java.restapi;
 
 public class Designation {
     public String getRaison_sociale() {
-        return raison_sociale;
+        return safeString(raison_sociale);
     }
 
     public String getEnseigne() {
-        return enseigne;
+        return safeString(enseigne);
+    }
+
+    private String safeString(String attribute) {
+        return attribute == null? "": attribute;
     }
 
     private final String raison_sociale;
@@ -18,6 +22,6 @@ public class Designation {
     }
 
     private String clean(String input) {
-        return input.replaceAll("é", "e");
+        return (input == null ? null : input.replaceAll("é", "e"));
     }
 }

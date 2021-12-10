@@ -16,4 +16,10 @@ public class DesignationTest {
         assertEquals("PasDaccent", new Designation("NA","PasDaccent").getEnseigne());
         assertEquals("eaccenteaigu", new Designation("NA","éaccentéaigu").getEnseigne());
     }
+
+    @Test
+    public void onDevraitRecupererDesAttributsVidesEtNonNulsQuandOnPasseDesValeursNulles() {
+        assertEquals("", new Designation("*",null).getEnseigne());
+        assertEquals("", new Designation(null,"*").getRaison_sociale());
+    }
 }

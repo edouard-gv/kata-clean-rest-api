@@ -1,8 +1,8 @@
 package fr.arolla.kata.java.restapi;
 
 public class Designation {
-    public String getDenomination_usuelle() {
-        return safeString(denomination_usuelle);
+    public String getDenominationUsuelle() {
+        return safeString(denominationUsuelle);
     }
 
     public String getEnseigne() {
@@ -13,11 +13,11 @@ public class Designation {
         return attribute == null? "": attribute;
     }
 
-    private final String denomination_usuelle;
+    private final String denominationUsuelle;
     private final String enseigne;
 
     public Designation(String denomination_usuelle, String enseigne) {
-        this.denomination_usuelle = clean(denomination_usuelle);
+        this.denominationUsuelle = clean(denomination_usuelle);
         this.enseigne = clean(enseigne);
     }
 

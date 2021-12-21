@@ -29,6 +29,15 @@ public class LightIntegrationTest {
                 .andExpect(content().json(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Joli Pre'}")));
     }
 
+    @Test
+    public void appelerLAPIdUpdateDevraitRenvoyerUnSiretConvertiEtConstruit() throws Exception {
+        mockMvc.perform(post(
+                        "/etablissement/456-789-01234/designation/")
+                        .content(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Joli Pré'}"))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(cleanJson("{'siret':'00045678901234'}")));
+    }
+
     private static String cleanJson(String readableJSON) {
         return readableJSON.replace('\'', '"').replaceAll(", ", ",");
     }

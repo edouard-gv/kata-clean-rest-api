@@ -30,6 +30,24 @@ public class LightIntegrationTest {
     }
 
     @Test
+    public void appelerLAPIneDevraitPasChangerLEnseigneSiOnNeLaPrecisePas() throws Exception {
+        mockMvc.perform(post(
+                        "/etablissement/12345678901234/designation/")
+                        .content(cleanJson("{'denomination_usuelle':'Nature SAS'}"))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Beau Pre'}")));
+    }
+
+    @Test
+    public void appelerLAPIneDevraitPasChangerLEnseigneNiLaDesignationSiOnNeLesPrecisePas() throws Exception {
+        mockMvc.perform(post(
+                        "/etablissement/12345678901234/designation/")
+                        .content(cleanJson("{}"))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(cleanJson("{'denomination_usuelle':'Espace SAS', 'enseigne':'Le Beau Pre'}")));
+    }
+
+    @Test
     public void appelerLAPIdUpdateDevraitRenvoyerUnSiretConvertiEtConstruit() throws Exception {
         mockMvc.perform(post(
                         "/etablissement/456-789-01234/designation/")

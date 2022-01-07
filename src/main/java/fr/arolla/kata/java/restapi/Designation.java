@@ -2,15 +2,11 @@ package fr.arolla.kata.java.restapi;
 
 public class Designation {
     public String getDenominationUsuelle() {
-        return safeString(denominationUsuelle);
+        return denominationUsuelle;
     }
 
     public String getEnseigne() {
-        return safeString(enseigne);
-    }
-
-    private String safeString(String attribute) {
-        return attribute == null? "": attribute;
+        return enseigne;
     }
 
     private final String denominationUsuelle;

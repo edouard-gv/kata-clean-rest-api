@@ -1,14 +1,16 @@
 package fr.arolla.kata.java.restapi;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 public class DesignationController {
+
     @RequestMapping(value = "/etablissement/{siret}/designation/", method = RequestMethod.POST)
-    public Map<String, String> updateDesignationForSiret(@PathVariable Siret siret, @RequestBody Designation designation) {
-        return Map.of( "siret", siret.toString(), "denomination_usuelle", designation.getDenominationUsuelle(), "enseigne", designation.getEnseigne());
+    public ResponseEntity<UpdatedDesignation> updateDesignationForSiret(@PathVariable Siret siret, @RequestBody Designation designation) {
+        return ResponseEntity.ok(UpdatedDesignation.from(siret, new DesignationService().updateDesignation(siret, designation)));
     }
 
     @RequestMapping(value = "/echo/", method = RequestMethod.POST)

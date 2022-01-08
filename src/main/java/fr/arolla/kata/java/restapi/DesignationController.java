@@ -8,7 +8,7 @@ import java.util.Map;
 @RestController
 public class DesignationController {
 
-    @RequestMapping(value = "/etablissement/{siret}/designation/", method = RequestMethod.POST)
+    @PatchMapping(value = "/etablissement/{siret}/designation/")
     public ResponseEntity<UpdatedDesignation> updateDesignationForSiret(@PathVariable Siret siret, @RequestBody Designation designation) {
         return ResponseEntity.ok(UpdatedDesignation.from(siret, new DesignationService().updateDesignation(siret, designation)));
     }

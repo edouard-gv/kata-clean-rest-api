@@ -1,19 +1,17 @@
 package fr.arolla.kata.java.restapi;
 
 import org.json.JSONException;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTest {
 
@@ -24,7 +22,7 @@ public class IntegrationTest {
     public void appelerLAPIdUpdateDevraitRenvoyerLaDesignation() throws JSONException {
         TestRestTemplate testRestTemplate = new TestRestTemplate();
         String response = testRestTemplate.
-                postForObject("http://localhost:" + this.port + "/etablissement/12345678901234/designation/",
+                patchForObject("http://localhost:" + this.port + "/etablissement/12345678901234/designation/",
                         Map.of("denomination_usuelle", "Arolla SAS", "enseigne", "Arolla"),
                         String.class);
 
@@ -37,7 +35,7 @@ public class IntegrationTest {
     public void appelerLAPIdUpdateDevraitRenvoyerLaDesignationEnPassantParLeConstructeurQuiNettoieLesAccents() throws JSONException {
         TestRestTemplate testRestTemplate = new TestRestTemplate();
         String response = testRestTemplate.
-                postForObject("http://localhost:" + this.port + "/etablissement/12345678901234/designation/",
+                patchForObject("http://localhost:" + this.port + "/etablissement/12345678901234/designation/",
                         Map.of("denomination_usuelle", "Nature SAS", "enseigne", "Le Joli Pré"),
                         String.class);
 

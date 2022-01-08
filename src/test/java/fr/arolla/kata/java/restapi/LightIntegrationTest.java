@@ -1,19 +1,16 @@
 package fr.arolla.kata.java.restapi;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class LightIntegrationTest {
@@ -23,7 +20,7 @@ public class LightIntegrationTest {
 
     @Test
     public void appelerLAPIdUpdateDevraitRenvoyerLaDesignationEnPassantParLeConstructeurQuiNettoieLesAccents() throws Exception {
-        mockMvc.perform(post(
+        mockMvc.perform(patch(
                         "/etablissement/12345678901234/designation/")
                         .content(cleanJson("{'denomination_usuelle':'Nature SAS', 'enseigne':'Le Joli Pré'}"))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -32,7 +29,7 @@ public class LightIntegrationTest {
 
     @Test
     public void appelerLAPIneDevraitPasChangerLEnseigneSiOnNeLaPrecisePas() throws Exception {
-        mockMvc.perform(post(
+        mockMvc.perform(patch(
                         "/etablissement/12345678901234/designation/")
                         .content(cleanJson("{'denomination_usuelle':'Nature SAS'}"))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -41,7 +38,7 @@ public class LightIntegrationTest {
 
     @Test
     public void appelerLAPIneDevraitPasChangerLEnseigneNiLaDesignationSiOnNeLesPrecisePas() throws Exception {
-        mockMvc.perform(post(
+        mockMvc.perform(patch(
                         "/etablissement/12345678901234/designation/")
                         .content(cleanJson("{}"))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -50,7 +47,7 @@ public class LightIntegrationTest {
 
     @Test
     public void appelerLAPIdUpdateDevraitRenvoyerUnSiretConvertiEtConstruit() throws Exception {
-        mockMvc.perform(post(
+        mockMvc.perform(patch(
                         "/etablissement/456-789-01234/designation/")
                         .content(cleanJson("{}"))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -59,7 +56,7 @@ public class LightIntegrationTest {
 
     @Test
     public void appelerLAPIdUpdateDevraitRenvoyerUneJolieErreurSiLeSiretEstInconnu() throws Exception {
-        mockMvc.perform(post(
+        mockMvc.perform(patch(
                         "/etablissement/00000000000000/designation/")
                         .content(cleanJson("{}"))
                         .contentType(MediaType.APPLICATION_JSON))

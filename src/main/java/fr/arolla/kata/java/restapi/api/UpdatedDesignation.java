@@ -1,7 +1,9 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.arolla.kata.java.restapi.domain.Designation;
+import fr.arolla.kata.java.restapi.domain.Siret;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UpdatedDesignation {

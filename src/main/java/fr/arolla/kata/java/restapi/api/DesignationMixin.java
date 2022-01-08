@@ -1,4 +1,4 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.api;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

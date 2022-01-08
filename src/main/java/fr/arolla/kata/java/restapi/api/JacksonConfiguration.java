@@ -1,5 +1,6 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.api;
 
+import fr.arolla.kata.java.restapi.domain.Designation;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

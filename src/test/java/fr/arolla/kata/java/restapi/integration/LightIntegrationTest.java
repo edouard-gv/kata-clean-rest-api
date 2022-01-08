@@ -1,4 +1,4 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

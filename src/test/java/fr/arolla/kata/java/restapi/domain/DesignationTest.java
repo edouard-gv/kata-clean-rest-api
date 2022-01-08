@@ -1,4 +1,4 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.domain;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

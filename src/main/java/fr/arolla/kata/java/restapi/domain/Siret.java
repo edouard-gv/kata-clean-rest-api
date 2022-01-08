@@ -1,4 +1,4 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.domain;
 
 import java.util.Objects;
 

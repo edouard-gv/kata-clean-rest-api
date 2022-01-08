@@ -1,4 +1,4 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.integration;
 
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;

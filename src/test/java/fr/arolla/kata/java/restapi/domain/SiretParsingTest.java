@@ -1,5 +1,6 @@
-package fr.arolla.kata.java.restapi;
+package fr.arolla.kata.java.restapi.domain;
 
+import fr.arolla.kata.java.restapi.api.SiretConverter;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

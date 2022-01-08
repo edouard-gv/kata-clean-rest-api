@@ -15,7 +15,7 @@ public class DesignationService {
 
     public Designation updateDesignation(Siret siret, Designation targetValue) {
         if (!designationRepository.containsKey(siret)) {
-            throw new IllegalArgumentException("Siret unknown "+ siret);
+            throw new InvalidDomainValueException("Siret unknown "+ siret);
             // @TODO : add unit test
         }
 

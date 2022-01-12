@@ -60,8 +60,8 @@ public class LightIntegrationTest {
                         "/etablissement/00000000000000/designation/")
                         .content(cleanJson("{}"))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(400))
-                .andExpect(content().string("Siret unknown 00000000000000"));
+                .andExpect(status().is(404))
+                .andExpect(content().json(cleanJson("{'code':'01','message':'Siret unknown 00000000000000'}")));
     }
 
     private static String cleanJson(String readableJSON) {

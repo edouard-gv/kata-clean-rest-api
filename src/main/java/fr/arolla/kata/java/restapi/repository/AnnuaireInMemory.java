@@ -2,7 +2,7 @@ package fr.arolla.kata.java.restapi.repository;
 
 import fr.arolla.kata.java.restapi.domain.Annuaire;
 import fr.arolla.kata.java.restapi.domain.Designation;
-import fr.arolla.kata.java.restapi.domain.InvalidDomainValueException;
+import fr.arolla.kata.java.restapi.domain.UnknownEntityException;
 import fr.arolla.kata.java.restapi.domain.Siret;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public class AnnuaireInMemory implements Annuaire {
     @Override
     public Designation findDesignationBySiret(Siret siret) {
         if (!designationRepository.containsKey(siret)) {
-            throw new InvalidDomainValueException("Siret unknown " + siret);
+            throw new UnknownEntityException("01", "Siret unknown " + siret);
         }
 
         return designationRepository.get(siret);
